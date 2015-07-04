@@ -29,9 +29,9 @@ module.exports = function(app) {
   // uncomment after placing your favicon in /public
   //app.use(favicon(__dirname + '/public/favicon.ico'));
   app.use(morgan('dev'));
-  // app.use(bodyParser.json());
-  // app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser({uploadDir:path.join(__dirname, '../public/upload/temp')}));
+   app.use(bodyParser.json());
+   app.use(bodyParser.urlencoded({ extended: false }));
+//  app.use(bodyParser({uploadDir:path.join(__dirname, '../public/upload/temp')}));
   app.use(methodOverride());
   app.use(cookieParser('some-secret-value-here'));
   //app.use(express.static(path.join(__dirname, 'public')));
