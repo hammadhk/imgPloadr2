@@ -6,18 +6,25 @@ var path = require('path'),
   cookieParser = require('cookie-parser'),
   morgan = require('morgan'),
   methodOverride = require('method-override'),
-  errorHandler = require('errorhandler');
+  errorHandler = require('errorhandler'),
+  moment = require('moment');
   // favicon = require('serve-favicon'),
   // logger = require('morgan'),;
 
 
 module.exports = function(app) {
-  app.engine('handlebars',  exphbs.create({
+  app.engine('hbs.htm',  exphbs.create({
+          extname: '.hbs.htm',
           defaultLayout:  'main',
           layoutsDir: app.get('views')  + '/layouts',
-          partialsDir:  [app.get('views') + '/partials']
+          partialsDir:  [app.get('views') + '/partials'],
+          helpers: {
+        	  timeago: function(timestamp) {
+        		  return moment(timestamp).startOf('minute').fromNow();
+        	  }
+          }
   }).engine);
-  app.set('view engine',  'handlebars');
+  app.set('view engine',  'hbs.htm');
 
   // uncomment after placing your favicon in /public
   //app.use(favicon(__dirname + '/public/favicon.ico'));
